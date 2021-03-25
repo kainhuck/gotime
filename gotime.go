@@ -114,6 +114,15 @@ func (t *Time) SubHour(x int) {
 	t.AddHour(-x)
 }
 
+
+func (t *Time) AddDuration(d *Duration) {
+	t.AddSeconds(d.Seconds)
+}
+
+func (t *Time) SubDuration(d *Duration) {
+	t.SubSeconds(d.Seconds)
+}
+
 func (t *Time) Early(time *Time) bool {
 	return t.SecondsOfDay() < time.SecondsOfDay()
 }
@@ -158,8 +167,8 @@ func (t *Time) ReduceHour() {
 	t.SubHour(1)
 }
 
-func (t *Time) Sub(time *Time) int {
-	return t.SecondsOfDay() - time.SecondsOfDay()
+func (t *Time) Sub(time *Time) *Duration {
+	return NewDuration(0, 0, t.SecondsOfDay() - time.SecondsOfDay())
 }
 
 func (t *Time) Accurate(x int) {
