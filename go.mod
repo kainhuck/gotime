@@ -1,1 +1,1 @@
-module "gotime"
+module "github.com/kainhuck/gotime"
